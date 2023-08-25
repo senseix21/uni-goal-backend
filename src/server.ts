@@ -1,10 +1,8 @@
-import mongoose from "mongoose";
+import { Server } from 'http';
+import httpStatus from 'http-status';
 import app from "./app";
 import config from "./config";
-import httpStatus from 'http-status'
-import { errorlogger, logger } from "./shared/logger";
 import ApiError from "./errors/ApiError";
-import { Server } from 'http';
 
 
 process.on('uncaughtException', error => {
@@ -15,9 +13,7 @@ process.on('uncaughtException', error => {
 let server: Server;
 const connectDB = async () => {
     try {
-        await mongoose.connect(config.database_url as string)
         console.log("Database connection established successfully!");
-
         app.listen(config.port, () => {
             console.log("App listening on port " + config.port);
         })
