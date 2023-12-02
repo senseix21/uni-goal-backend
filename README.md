@@ -86,3 +86,4 @@ The Prisma Client provides an interface to interact with your database.
 That's it! You have successfully set up the Backend Boilerplate project with PostgreSQL and Prisma. You can now start exploring and working with the codebase. Refer to the project documentation or README for further instructions on how to run and use the backend service.
 
 Happy coding!
+# uni-goal-backend
