@@ -18,7 +18,15 @@ model User {
   email     String @unique
   phone     String
   password  String
-  role      String
+  role      Role   @default(student)
+  survey    Json[]
 
   @@map("user")
+}
+
+enum Role {
+  student
+  counselor
+  admin
+  superAdmin
 }

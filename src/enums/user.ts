@@ -3,5 +3,5 @@ export enum userRole {
     student = 'student',
     counselor = 'counselor',
     admin = 'admin',
-    superAdmin = 'superadmin'
+    superAdmin = 'superAdmin'
 }
