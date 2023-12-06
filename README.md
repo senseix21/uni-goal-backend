@@ -36,12 +36,12 @@
     "success": true,
     "message": "User created successfully!",
     "data": {
-        "id": "65704dd54b1045e1dc25bcf2",
+        "id": "65709122c054bac248990a22",
         "firstName": "User",
-        "lastName": "One",
-        "email": "<user1@example.com>",
+        "lastName": "Two",
+        "email": "user2@example.com",
         "phone": "+1234567890",
-        "password": "$2b$16$HS/yRdP04vfS2qy2rh6iUeFEdxMGkR9PW/VVEX/dFFb.KvmfOxyFm",
+        "password": "$2b$16$aB58.1Pp3hdNYfozou4.POXZFXFLwWuEZGoooYklb3b650p73MDvK",
         "role": "student",
         "survey": [
             {
@@ -67,17 +67,32 @@
             {
                 "id": "question-5",
                 "question": "What is your highest level of education?",
-                "answer": "Bachelor"
-            },
-            {
-                "id": "question-6",
-                "question": "Grade:",
-                "answer": "A+"
+                "answer": [
+                    {
+                        "answerType": "Level",
+                        "value": "HSC/A Level"
+                    },
+                    {
+                        "answerType": "Overall Grade",
+                        "value": "A+"
+                    }
+                ]
             },
             {
                 "id": "question-7",
                 "question": "Have you taken any English Proficiency test?",
-                "answer": "Yes"
+                "answer": [
+                    {
+                        "test": "IELTS",
+                        "testScores": {
+                            "listening": 8,
+                            "reading": 7.5,
+                            "writing": 7,
+                            "speaking": 8,
+                            "overall": 7.5
+                        }
+                    }
+                ]
             }
         ]
     }
