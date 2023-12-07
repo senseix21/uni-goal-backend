@@ -156,6 +156,31 @@ model StudentStatus {
   visaIssued         Boolean?
 }
 
+// StudyProgram model
+model StudyProgram {
+  id                   String   @id @default(auto()) @map("_id") @db.ObjectId
+  levelName            Level // Enum: "Bachelor" | "Masters" | "PhD"
+  programName          String
+  universityName       String
+  location             String // Format: "Country, City"
+  duration             String
+  studyLanguage        String
+  tuitionFee           String
+  applicationFee       String
+  entryQualification   String
+  languageRequirements String
+  programOverview      String
+  studySession         String
+  applicationDeadline  DateTime
+}
+
+// Enum for Level
+enum Level {
+  Bachelor
+  Masters
+  PhD
+}
+
 enum ApplicationStatus {
   UnderReview
   Accepted
