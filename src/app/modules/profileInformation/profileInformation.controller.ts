@@ -15,11 +15,52 @@ const create = catchAsync(async (req, res) => {
     sendResponse(res, {
         success: true,
         statusCode: httpStatus.OK,
-        message: "User ProfileInformation created successfully",
+        message: "User Profile Information retrieved successfully",
+        data: result
+    })
+});
+
+const getSingle = catchAsync(async (req, res) => {
+    const accessToken: any = req.headers.authorization;
+    const decodedToken = jwtHelpers.verifyToken(accessToken, config.jwt.secret as Secret);
+    const userId = decodedToken.userId;
+    const result = await ProfileInformationService.getSingle(userId)
+
+    sendResponse(res, {
+        success: true,
+        statusCode: httpStatus.OK,
+        message: "User Profile Information retrieved successfully",
+        data: result
+    })
+});
+
+const updateSingle = catchAsync(async (req, res) => {
+
+    const result = await ProfileInformationService.updateSingle(req.body, req.params.id)
+
+    sendResponse(res, {
+        success: true,
+        statusCode: httpStatus.OK,
+        message: "User Profile Information updated successfully",
+        data: result
+    })
+});
+
+const deleteSingle = catchAsync(async (req, res) => {
+
+    const result = await ProfileInformationService.deleteSingle(req.params.id)
+
+    sendResponse(res, {
+        success: true,
+        statusCode: httpStatus.OK,
+        message: "User Profile Information deleted successfully",
         data: result
     })
 });
 
 export const ProfileInformationController = {
-    create
+    create,
+    getSingle,
+    updateSingle,
+    deleteSingle
 }
