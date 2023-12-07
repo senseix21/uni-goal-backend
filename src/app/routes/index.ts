@@ -3,6 +3,7 @@ import { AuthRoutes } from '../modules/auth/auth.route';
 import { CounselorRoutes } from '../modules/counselor/counselor.route';
 import { EducationHistoryRoutes } from '../modules/educationHistory/educationHistory.route';
 import { ExtraCurricularActivityRoutes } from '../modules/extraCurricularActivity/extraCurricularActivity.route';
+import { LanguageAndOtherQualificationsRoutes } from '../modules/languageAndOtherQualifications/languageAndOtherQualifications.route';
 import { ProfileInformationRoutes } from '../modules/profileInformation/profileInformation.route';
 import { SkillsRoutes } from '../modules/skills/skills.route';
 import { WorkHistoryRoutes } from '../modules/workHistory/workHistory.route';
@@ -18,6 +19,7 @@ const moduleRoutes = [
     { path: '/workHistory', route: WorkHistoryRoutes },
     { path: '/extraCurricularActivity', route: ExtraCurricularActivityRoutes },
     { path: '/skills', route: SkillsRoutes },
+    { path: '/qualifications', route: LanguageAndOtherQualificationsRoutes },
 
 ];
 

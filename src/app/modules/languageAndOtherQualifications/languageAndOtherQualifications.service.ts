@@ -3,13 +3,13 @@ import { prisma } from "../../../shared/prisma";
 
 const create = async (payload: LanguageAndOtherQualifications, userId: string): Promise<LanguageAndOtherQualifications> => {
     // Check if the user has already added LanguageAndOtherQualifications
-    const existingCartItem = await prisma.languageAndOtherQualifications.findFirst({
+    const existingItem = await prisma.languageAndOtherQualifications.findFirst({
         where: {
             userId,
         },
     });
 
-    if (existingCartItem) {
+    if (existingItem) {
         throw new Error("Language And Other Qualifications Information already exist for the user");
     }
 
