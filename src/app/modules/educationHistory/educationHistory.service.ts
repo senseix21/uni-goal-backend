@@ -25,6 +25,19 @@ const getSingle = async (userId: string): Promise<EducationHistory | null> => {
     return result;
 }
 
+const getAll = async (userId: string): Promise<EducationHistory[] | null> => {
+    const result = await prisma.educationHistory.findMany({
+        where: {
+            userId
+        },
+        include: {
+            user: true
+        }
+    })
+
+    return result;
+}
+
 const updateSingle = async (data: Partial<EducationHistory>, id: string): Promise<EducationHistory> => {
     const result = await prisma.educationHistory.update({
         where: {
@@ -50,6 +63,7 @@ const deleteSingle = async (id: string): Promise<EducationHistory | null> => {
 export const EducationHistoryService = {
     create,
     getSingle,
+    getAll,
     updateSingle,
     deleteSingle
 }
