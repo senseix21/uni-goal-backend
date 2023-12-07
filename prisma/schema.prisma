@@ -139,19 +139,19 @@ model StudentStatus {
   id                 String             @id @default(auto()) @map("_id") @db.ObjectId
   userId             String             @db.ObjectId
   user               User               @relation(fields: [userId], references: [id])
-  consultationFee    BigInt?
+  consultationFee    Int?
   consultationTime   DateTime?
   consultationDone   Boolean?
   documentsReady     Boolean?
-  applicationFee     BigInt?
-  applicationPaid    Boolean
+  applicationFee     Int?
+  applicationPaid    Boolean?
   universityName     String?
   majorName          String?
   countryName        String?
   applicationStatus  ApplicationStatus?
   interviewScheduled Boolean?
-  acceptanceFee      BigInt?
-  admissionNotice    Boolean
+  acceptanceFee      Int?
+  admissionNotice    Boolean?
   embassySubmission  DateTime?
   visaIssued         Boolean?
 }

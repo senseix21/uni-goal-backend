@@ -24,10 +24,9 @@ const create = async (payload: StudentStatus, userId: string): Promise<StudentSt
     return result;
 }
 
-const getSingle = async (userId: string, id: string): Promise<StudentStatus | null> => {
+const getSingle = async (id: string): Promise<StudentStatus | null> => {
     const result = await prisma.studentStatus.findFirst({
         where: {
-            userId,
             id
         },
         include: {

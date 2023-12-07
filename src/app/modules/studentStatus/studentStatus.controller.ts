@@ -1,16 +1,11 @@
 import httpStatus from "http-status";
-import { Secret } from "jsonwebtoken";
-import config from "../../../config";
-import { jwtHelpers } from "../../../helpers/jwthelpers";
 import catchAsync from "../../../shared/catchAsync";
 import sendResponse from "../../../shared/sendResponse";
 import { StudentStatusService } from "./studentStatus.service";
 
 const create = catchAsync(async (req, res) => {
-    const accessToken: any = req.headers.authorization;
-    const decodedToken = jwtHelpers.verifyToken(accessToken, config.jwt.secret as Secret);
-    const userId = decodedToken.userId;
-    const result = await StudentStatusService.create(req.body, userId)
+    const { userId, ...data } = req.body
+    const result = await StudentStatusService.create(data, userId)
 
     sendResponse(res, {
         success: true,
@@ -21,10 +16,8 @@ const create = catchAsync(async (req, res) => {
 });
 
 const getSingle = catchAsync(async (req, res) => {
-    const accessToken: any = req.headers.authorization;
-    const decodedToken = jwtHelpers.verifyToken(accessToken, config.jwt.secret as Secret);
-    const userId = decodedToken.userId;
-    const result = await StudentStatusService.getSingle(userId, req.params.id)
+
+    const result = await StudentStatusService.getSingle(req.params.id)
 
     sendResponse(res, {
         success: true,
