@@ -3,7 +3,7 @@ import { prisma } from "../../../shared/prisma";
 
 const create = async (payload: Skills, userId: string): Promise<Skills> => {
     // Check if the user has already added skills
-    const existingCartItem = await prisma.profileInformation.findFirst({
+    const existingCartItem = await prisma.skills.findFirst({
         where: {
             userId,
         },
@@ -11,6 +11,11 @@ const create = async (payload: Skills, userId: string): Promise<Skills> => {
 
     if (existingCartItem) {
         throw new Error("Profile Information already exist for the user");
+    }
+
+    // Check if the number of skills exceeds the allowed limit (6)
+    if (payload.skillNames.length > 6) {
+        throw new Error("Number of skills exceeds the limit (6)");
     }
 
     // If the skills is not already in the user Profile, add it
