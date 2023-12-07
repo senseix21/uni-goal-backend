@@ -12,10 +12,11 @@ const create = async (payload: EducationHistory, userId: string): Promise<Educat
     return result;
 }
 
-const getSingle = async (userId: string): Promise<EducationHistory | null> => {
+const getSingle = async (userId: string, id: string): Promise<EducationHistory | null> => {
     const result = await prisma.educationHistory.findFirst({
         where: {
-            userId
+            userId,
+            id
         },
         include: {
             user: true
@@ -30,9 +31,7 @@ const getAll = async (userId: string): Promise<EducationHistory[] | null> => {
         where: {
             userId
         },
-        include: {
-            user: true
-        }
+
     })
 
     return result;

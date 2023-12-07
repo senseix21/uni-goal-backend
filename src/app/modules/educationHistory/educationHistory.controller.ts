@@ -24,7 +24,7 @@ const getSingle = catchAsync(async (req, res) => {
     const accessToken: any = req.headers.authorization;
     const decodedToken = jwtHelpers.verifyToken(accessToken, config.jwt.secret as Secret);
     const userId = decodedToken.userId;
-    const result = await EducationHistoryService.getSingle(userId)
+    const result = await EducationHistoryService.getSingle(userId, req.params.id)
 
     sendResponse(res, {
         success: true,

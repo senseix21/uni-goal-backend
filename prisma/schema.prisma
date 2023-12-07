@@ -23,6 +23,7 @@ model User {
   ProfileInformation ProfileInformation[]
   Counselor          Counselor[]
   EducationHistory   EducationHistory[]
+  WorkHistory        WorkHistory[]
 
   @@map("user")
 }
@@ -78,9 +79,27 @@ model EducationHistory {
   gpa                 Float
 }
 
+// WorkHistory model
+model WorkHistory {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId           String   @db.ObjectId
+  user             User     @relation(fields: [userId], references: [id])
+  organization     String
+  organizationType String
+  position         String
+  JobType          JobType
+  fromDate         DateTime
+  toDate           DateTime
+}
+
 enum Role {
   student
   counselor
   admin
   superAdmin
+}
+
+enum JobType {
+  FullTime
+  PartTime
 }

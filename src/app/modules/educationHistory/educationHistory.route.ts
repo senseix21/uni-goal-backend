@@ -9,7 +9,7 @@ router.post('/',
     authenticate(userRole.student),
     EducationHistoryController.create);
 
-router.get('/',
+router.get('/:id',
     authenticate(userRole.student,),
     EducationHistoryController.getSingle);
 
