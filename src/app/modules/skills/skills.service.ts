@@ -2,7 +2,18 @@ import { Skills } from "@prisma/client";
 import { prisma } from "../../../shared/prisma";
 
 const create = async (payload: Skills, userId: string): Promise<Skills> => {
+    // Check if the user has already added skills
+    const existingCartItem = await prisma.profileInformation.findFirst({
+        where: {
+            userId,
+        },
+    });
 
+    if (existingCartItem) {
+        throw new Error("Profile Information already exist for the user");
+    }
+
+    // If the skills is not already in the user Profile, add it
     const result = await prisma.skills.create({
         data: {
             ...payload,
@@ -26,16 +37,6 @@ const getSingle = async (userId: string, id: string): Promise<Skills | null> => 
     return result;
 }
 
-const getAll = async (userId: string): Promise<Skills[] | null> => {
-    const result = await prisma.skills.findMany({
-        where: {
-            userId
-        },
-
-    })
-
-    return result;
-}
 
 const updateSingle = async (data: Partial<Skills>, id: string): Promise<Skills> => {
     const result = await prisma.skills.update({
@@ -62,7 +63,6 @@ const deleteSingle = async (id: string): Promise<Skills | null> => {
 export const SkillsService = {
     create,
     getSingle,
-    getAll,
     updateSingle,
     deleteSingle
 }
