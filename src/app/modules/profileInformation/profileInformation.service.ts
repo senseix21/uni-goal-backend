@@ -26,15 +26,40 @@ const create = async (payload: IProfileInformation, userId: string): Promise<Pro
 }
 
 const getSingle = async (userId: string): Promise<ProfileInformation | null> => {
-    const result = await prisma.profileInformation.findUnique({
+    const result = await prisma.profileInformation.findFirst({
         where: {
-            id: userId
+            userId
         }
     })
 
     return result;
 }
+
+const updateSingle = async (data: Partial<IProfileInformation>, id: string): Promise<ProfileInformation> => {
+    const result = await prisma.profileInformation.update({
+        where: {
+            id: id
+        },
+        data: data
+    })
+
+    return result;
+}
+
+const deleteSingle = async (id: string): Promise<ProfileInformation | null> => {
+    const result = await prisma.profileInformation.delete({
+        where: {
+            id: id
+        }
+    })
+
+    return result;
+}
+
+
 export const ProfileInformationService = {
     create,
-    getSingle
+    getSingle,
+    updateSingle,
+    deleteSingle
 }
