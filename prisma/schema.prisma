@@ -22,6 +22,7 @@ model User {
   survey             Json[]
   ProfileInformation ProfileInformation[]
   Counselor          Counselor[]
+  EducationHistory   EducationHistory[]
 
   @@map("user")
 }
@@ -61,6 +62,20 @@ model Counselor {
   linkedinLink       String
   formalPhoto        String
   studentCard        String
+}
+
+// EducationHistory model
+model EducationHistory {
+  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId              String   @db.ObjectId
+  user                User     @relation(fields: [userId], references: [id])
+  levelOfEducation    String
+  startOfStudies      DateTime
+  expectedPassingYear DateTime
+  officialName        String
+  groupMajorName      String
+  mediumOfInstruction String
+  gpa                 Float
 }
 
 enum Role {
