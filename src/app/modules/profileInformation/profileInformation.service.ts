@@ -29,6 +29,9 @@ const getSingle = async (userId: string): Promise<ProfileInformation | null> => 
     const result = await prisma.profileInformation.findFirst({
         where: {
             userId
+        },
+        include: {
+            user: true
         }
     })
 

@@ -6,7 +6,7 @@ const router = express.Router();
 router.post('/',
     ProfileInformationController.create);
 router.get('/', ProfileInformationController.getSingle);
-router.patch('/', ProfileInformationController.updateSingle);
-router.delete('/', ProfileInformationController.deleteSingle);
+router.patch('/:id', ProfileInformationController.updateSingle);
+router.delete('/:id', ProfileInformationController.deleteSingle);
 
 export const ProfileInformationRoutes = router;
