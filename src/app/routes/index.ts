@@ -4,6 +4,7 @@ import { CounselorRoutes } from '../modules/counselor/counselor.route';
 import { EducationHistoryRoutes } from '../modules/educationHistory/educationHistory.route';
 import { ExtraCurricularActivityRoutes } from '../modules/extraCurricularActivity/extraCurricularActivity.route';
 import { ProfileInformationRoutes } from '../modules/profileInformation/profileInformation.route';
+import { SkillsRoutes } from '../modules/skills/skills.route';
 import { WorkHistoryRoutes } from '../modules/workHistory/workHistory.route';
 
 
@@ -16,6 +17,7 @@ const moduleRoutes = [
     { path: '/educationHistory', route: EducationHistoryRoutes },
     { path: '/workHistory', route: WorkHistoryRoutes },
     { path: '/extraCurricularActivity', route: ExtraCurricularActivityRoutes },
+    { path: '/skills', route: SkillsRoutes },
 
 ];
 
