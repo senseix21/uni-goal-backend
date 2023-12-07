@@ -8,6 +8,7 @@ import { ProfileRoutes } from '../modules/profile/profile.route';
 import { ProfileInformationRoutes } from '../modules/profileInformation/profileInformation.route';
 import { SkillsRoutes } from '../modules/skills/skills.route';
 import { StudentStatusRoutes } from '../modules/studentStatus/studentStatus.route';
+import { StudyProgramRoutes } from '../modules/studyProgram/studyProgram.route';
 import { WorkHistoryRoutes } from '../modules/workHistory/workHistory.route';
 
 
@@ -24,6 +25,7 @@ const moduleRoutes = [
     { path: '/qualifications', route: LanguageAndOtherQualificationsRoutes },
     { path: '/studentStatus', route: StudentStatusRoutes },
     { path: '/profile', route: ProfileRoutes },
+    { path: '/studyProgram', route: StudyProgramRoutes },
 
 ];
 
