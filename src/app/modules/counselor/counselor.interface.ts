@@ -9,7 +9,6 @@ export type ICounselor = {
     major: string
     englishProficiency: string
     availability: string;
-    workingHours: string;
     aboutYourself: string;
     facebookLink: string;
     linkedinLink: string;
