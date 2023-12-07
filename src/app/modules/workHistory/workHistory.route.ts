@@ -1,68 +1,28 @@
-import { WorkHistory } from "@prisma/client";
-import { prisma } from "../../../shared/prisma";
+import express from "express";
+import { userRole } from "../../../enums/user";
+import authenticate from "../../middlewares/authenticate";
+import { WorkHistoryController } from "./workHistory.controller";
 
-const create = async (payload: WorkHistory, userId: string): Promise<WorkHistory> => {
+const router = express.Router();
 
-    const result = await prisma.workHistory.create({
-        data: {
-            ...payload,
-            userId
-        }
-    })
-    return result;
-}
+router.post('/',
+    authenticate(userRole.student),
+    WorkHistoryController.create);
 
-const getSingle = async (userId: string, id: string): Promise<WorkHistory | null> => {
-    const result = await prisma.workHistory.findFirst({
-        where: {
-            userId,
-            id
-        },
-        include: {
-            user: true
-        }
-    })
+router.get('/:id',
+    authenticate(userRole.student,),
+    WorkHistoryController.getSingle);
 
-    return result;
-}
+router.get('/',
+    authenticate(userRole.student,),
+    WorkHistoryController.getAll);
 
-const getAll = async (userId: string): Promise<WorkHistory[] | null> => {
-    const result = await prisma.workHistory.findMany({
-        where: {
-            userId
-        },
+router.patch('/:id',
+    authenticate(userRole.student,),
+    WorkHistoryController.updateSingle);
 
-    })
+router.delete('/:id',
+    authenticate(userRole.student,),
+    WorkHistoryController.deleteSingle);
 
-    return result;
-}
-
-const updateSingle = async (data: Partial<WorkHistory>, id: string): Promise<WorkHistory> => {
-    const result = await prisma.workHistory.update({
-        where: {
-            id: id
-        },
-        data: data
-    })
-
-    return result;
-}
-
-const deleteSingle = async (id: string): Promise<WorkHistory | null> => {
-    const result = await prisma.workHistory.delete({
-        where: {
-            id: id
-        }
-    })
-
-    return result;
-}
-
-
-export const WorkHistoryService = {
-    create,
-    getSingle,
-    getAll,
-    updateSingle,
-    deleteSingle
-}
+export const WorkHistoryRoutes = router;

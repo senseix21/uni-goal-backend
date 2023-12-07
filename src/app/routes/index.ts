@@ -3,6 +3,7 @@ import { AuthRoutes } from '../modules/auth/auth.route';
 import { CounselorRoutes } from '../modules/counselor/counselor.route';
 import { EducationHistoryRoutes } from '../modules/educationHistory/educationHistory.route';
 import { ProfileInformationRoutes } from '../modules/profileInformation/profileInformation.route';
+import { WorkHistoryRoutes } from '../modules/workHistory/workHistory.route';
 
 
 const router = express.Router();
@@ -12,6 +13,7 @@ const moduleRoutes = [
     { path: '/profileInformation', route: ProfileInformationRoutes },
     { path: '/counselor', route: CounselorRoutes },
     { path: '/educationHistory', route: EducationHistoryRoutes },
+    { path: '/workHistory', route: WorkHistoryRoutes },
 
 ];
 

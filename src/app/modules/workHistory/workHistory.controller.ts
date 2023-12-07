@@ -4,7 +4,7 @@ import config from "../../../config";
 import { jwtHelpers } from "../../../helpers/jwthelpers";
 import catchAsync from "../../../shared/catchAsync";
 import sendResponse from "../../../shared/sendResponse";
-import { WorkHistoryService } from "./workHistory.route";
+import { WorkHistoryService } from "./workHistory.service";
 
 const create = catchAsync(async (req, res) => {
     const accessToken: any = req.headers.authorization;
