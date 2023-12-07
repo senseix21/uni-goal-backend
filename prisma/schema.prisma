@@ -12,20 +12,21 @@ datasource db {
 
 // User model
 model User {
-  id                      String                    @id @default(auto()) @map("_id") @db.ObjectId
-  firstName               String
-  lastName                String
-  email                   String                    @unique
-  phone                   String
-  password                String
-  role                    Role                      @default(student)
-  survey                  Json[]
-  ProfileInformation      ProfileInformation[]
-  Counselor               Counselor[]
-  EducationHistory        EducationHistory[]
-  WorkHistory             WorkHistory[]
-  ExtraCurricularActivity ExtraCurricularActivity[]
-  Skills                  Skills[]
+  id                             String                           @id @default(auto()) @map("_id") @db.ObjectId
+  firstName                      String
+  lastName                       String
+  email                          String                           @unique
+  phone                          String
+  password                       String
+  role                           Role                             @default(student)
+  survey                         Json[]
+  ProfileInformation             ProfileInformation[]
+  Counselor                      Counselor[]
+  EducationHistory               EducationHistory[]
+  WorkHistory                    WorkHistory[]
+  ExtraCurricularActivity        ExtraCurricularActivity[]
+  Skills                         Skills[]
+  LanguageAndOtherQualifications LanguageAndOtherQualifications[]
 
   @@map("user")
 }
@@ -113,6 +114,23 @@ model Skills {
   skillNames String[]
 
   @@map("skills")
+}
+
+// LanguageQualifications model
+model LanguageAndOtherQualifications {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String   @db.ObjectId
+  user        User     @relation(fields: [userId], references: [id])
+  ielts       Float?
+  toefl       Float?
+  duolingo    Float?
+  pte         Float?
+  gre         Float?
+  gmat        Float?
+  Others      Float?
+  NoneOfThese Boolean?
+
+  @@map("language_and_other_qualifications")
 }
 
 enum Role {
