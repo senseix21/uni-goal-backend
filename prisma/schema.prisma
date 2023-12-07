@@ -27,6 +27,7 @@ model User {
   ExtraCurricularActivity        ExtraCurricularActivity[]
   Skills                         Skills[]
   LanguageAndOtherQualifications LanguageAndOtherQualifications[]
+  StudentStatus                  StudentStatus[]
 
   @@map("user")
 }
@@ -131,6 +132,34 @@ model LanguageAndOtherQualifications {
   NoneOfThese Boolean?
 
   @@map("language_and_other_qualifications")
+}
+
+// StudentStatus model
+model StudentStatus {
+  id                 String             @id @default(auto()) @map("_id") @db.ObjectId
+  userId             String             @db.ObjectId
+  user               User               @relation(fields: [userId], references: [id])
+  consultationFee    Boolean?
+  consultationTime   DateTime?
+  consultationDone   Boolean?
+  documentsReady     Boolean?
+  applicationFee     BigInt?
+  applicationPaid    Boolean
+  universityName     String?
+  majorName          String?
+  countryName        String?
+  applicationStatus  ApplicationStatus?
+  interviewScheduled Boolean?
+  acceptanceFee      BigInt?
+  admissionNotice    Boolean
+  embassySubmission  DateTime?
+  visaIssued         Boolean?
+}
+
+enum ApplicationStatus {
+  UnderReview
+  Accepted
+  Rejected
 }
 
 enum Role {
