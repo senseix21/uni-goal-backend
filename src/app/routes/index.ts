@@ -6,6 +6,7 @@ import { ExtraCurricularActivityRoutes } from '../modules/extraCurricularActivit
 import { LanguageAndOtherQualificationsRoutes } from '../modules/languageAndOtherQualifications/languageAndOtherQualifications.route';
 import { ProfileInformationRoutes } from '../modules/profileInformation/profileInformation.route';
 import { SkillsRoutes } from '../modules/skills/skills.route';
+import { StudentStatusRoutes } from '../modules/studentStatus/studentStatus.route';
 import { WorkHistoryRoutes } from '../modules/workHistory/workHistory.route';
 
 
@@ -20,6 +21,7 @@ const moduleRoutes = [
     { path: '/extraCurricularActivity', route: ExtraCurricularActivityRoutes },
     { path: '/skills', route: SkillsRoutes },
     { path: '/qualifications', route: LanguageAndOtherQualificationsRoutes },
+    { path: '/studentStatus', route: StudentStatusRoutes },
 
 ];
 
