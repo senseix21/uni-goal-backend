@@ -9,6 +9,17 @@ import { ILoginResponse, ILoginUser, IUser } from "./auth.interface";
 
 
 const signUp = async (payload: IUser) => {
+    const { email } = payload;
+
+    const isUserExist = await prisma.user.findFirst({
+        where: {
+            email: email,
+        }
+    });
+    if (isUserExist) {
+        throw new ApiError(httpStatus.UNAUTHORIZED, "User already exists!");
+    }
+
     const result = await prisma.user.create({ data: payload })
     return result;
 }
