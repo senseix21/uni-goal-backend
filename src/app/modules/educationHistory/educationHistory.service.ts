@@ -1,16 +1,29 @@
 import { EducationHistory } from "@prisma/client";
 import { prisma } from "../../../shared/prisma";
 
-const create = async (payload: EducationHistory, userId: string): Promise<EducationHistory> => {
+const create = async (data: EducationHistory[], userId: string) => {
+    const results = await prisma.educationHistory.createMany({
+        data: data.map(item => ({
+            userId: userId,
+            levelOfEducation: item.levelOfEducation,
+            startOfStudies: item.startOfStudies,
+            expectedPassingYear: item.expectedPassingYear,
+            officialName: item.officialName,
+            groupMajorName: item.groupMajorName,
+            mediumOfInstruction: item.mediumOfInstruction,
+            gpa: item.gpa,
+        })),
+    });
 
-    const result = await prisma.educationHistory.create({
-        data: {
-            ...payload,
-            userId
-        }
-    })
-    return result;
-}
+    return results;
+
+};
+
+
+
+
+
+
 
 const getSingle = async (userId: string, id: string): Promise<EducationHistory | null> => {
     const result = await prisma.educationHistory.findFirst({

@@ -12,8 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.WorkHistoryService = void 0;
 const prisma_1 = require("../../../shared/prisma");
 const create = (payload, userId) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield prisma_1.prisma.workHistory.create({
-        data: Object.assign(Object.assign({}, payload), { userId })
+    const result = yield prisma_1.prisma.workHistory.createMany({
+        data: payload.map(item => (Object.assign(Object.assign({}, item), { userId }))),
     });
     return result;
 });

@@ -79,8 +79,9 @@ model EducationHistory {
   expectedPassingYear DateTime
   officialName        String
   groupMajorName      String
+  subjectName         String?
   mediumOfInstruction String
-  gpa                 Float
+  gpa                 String
 }
 
 // WorkHistory model

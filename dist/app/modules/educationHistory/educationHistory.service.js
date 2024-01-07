@@ -11,11 +11,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EducationHistoryService = void 0;
 const prisma_1 = require("../../../shared/prisma");
-const create = (payload, userId) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield prisma_1.prisma.educationHistory.create({
-        data: Object.assign(Object.assign({}, payload), { userId })
+const create = (data, userId) => __awaiter(void 0, void 0, void 0, function* () {
+    const results = yield prisma_1.prisma.educationHistory.createMany({
+        data: data.map(item => ({
+            userId: userId,
+            levelOfEducation: item.levelOfEducation,
+            startOfStudies: item.startOfStudies,
+            expectedPassingYear: item.expectedPassingYear,
+            officialName: item.officialName,
+            groupMajorName: item.groupMajorName,
+            mediumOfInstruction: item.mediumOfInstruction,
+            gpa: item.gpa,
+        })),
     });
-    return result;
+    return results;
 });
 const getSingle = (userId, id) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield prisma_1.prisma.educationHistory.findFirst({

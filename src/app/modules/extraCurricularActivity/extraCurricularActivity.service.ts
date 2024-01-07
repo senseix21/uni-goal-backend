@@ -1,14 +1,14 @@
 import { ExtraCurricularActivity } from "@prisma/client";
 import { prisma } from "../../../shared/prisma";
 
-const create = async (payload: ExtraCurricularActivity, userId: string): Promise<ExtraCurricularActivity> => {
+const create = async (payload: ExtraCurricularActivity[], userId: string) => {
 
-    const result = await prisma.extraCurricularActivity.create({
-        data: {
-            ...payload,
+    const result = await prisma.extraCurricularActivity.createMany({
+        data: payload.map(item => ({
+            ...item,
             userId
-        }
-    })
+        })),
+    });
     return result;
 }
 

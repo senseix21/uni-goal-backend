@@ -1,13 +1,13 @@
 import { WorkHistory } from "@prisma/client";
 import { prisma } from "../../../shared/prisma";
 
-const create = async (payload: WorkHistory, userId: string): Promise<WorkHistory> => {
+const create = async (payload: WorkHistory[], userId: string) => {
 
-    const result = await prisma.workHistory.create({
-        data: {
-            ...payload,
+    const result = await prisma.workHistory.createMany({
+        data: payload.map(item => ({
+            ...item,
             userId
-        }
+        })),
     })
     return result;
 }

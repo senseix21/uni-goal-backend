@@ -1,0 +1,13 @@
+P1. Design e subject filed name ekti field ache kintu payload e seta missing. 
+Eta add korte hobe
+
+p2. gpa filed e A+, B- egulo dile backend e validation error(floating numner) asche. 
+eta fix kora dorkar zate A+/4.5 sobgulai deoa zai.
+
+p3. education history form er data array of obejects holei mone hi valo hoi.
+ zemonti survey data te chilo. orrthat object akare data gulo array te pass kore
+  sei arrake insert kora.
+
+p4. education history, work history, extra curricular activities egulo same hobe. 
+karon sobgulotei multiple block insert korte hobe.
+--- canva design ta etu check korben tahole update design ta paben

@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "C:\\Users\\senseiX\\Dev\\Projects\\unigoal-backend\\logs\\winston\\errors\\.e1bad82d9646f4e0eb5fa71fba58a47c5dd9a29a-audit.json",
+    "files": [
+        {
+            "date": 1704635356129,
+            "name": "C:\\Users\\senseiX\\Dev\\Projects\\unigoal-backend\\logs\\winston\\errors\\phu-2024-07-01-19-error.log",
+            "hash": "b84cd690b14a59ed68ae068cbe382ec9708b0d654e0880b43714bdad52d46a93"
+        }
+    ],
+    "hashType": "sha256"
+}

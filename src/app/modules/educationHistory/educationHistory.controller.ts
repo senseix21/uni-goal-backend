@@ -10,6 +10,7 @@ const create = catchAsync(async (req, res) => {
     const accessToken: any = req.headers.authorization;
     const decodedToken = jwtHelpers.verifyToken(accessToken, config.jwt.secret as Secret);
     const userId = decodedToken.userId;
+
     const result = await EducationHistoryService.create(req.body, userId)
 
     sendResponse(res, {
@@ -39,6 +40,7 @@ const getAll = catchAsync(async (req, res) => {
     const accessToken: any = req.headers.authorization;
     const decodedToken = jwtHelpers.verifyToken(accessToken, config.jwt.secret as Secret);
     const userId = decodedToken.userId;
+
     const result = await EducationHistoryService.getAll(userId)
 
     sendResponse(res, {
