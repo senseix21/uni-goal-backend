@@ -120,9 +120,9 @@ model Skills {
 
 // LanguageQualifications model
 model LanguageAndOtherQualifications {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId      String   @db.ObjectId
-  user        User     @relation(fields: [userId], references: [id])
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String  @db.ObjectId
+  user        User    @relation(fields: [userId], references: [id])
   ielts       Float?
   toefl       Float?
   duolingo    Float?
@@ -130,7 +130,7 @@ model LanguageAndOtherQualifications {
   gre         Float?
   gmat        Float?
   Others      Float?
-  NoneOfThese Boolean?
+  NoneOfThese String?
 
   @@map("language_and_other_qualifications")
 }
