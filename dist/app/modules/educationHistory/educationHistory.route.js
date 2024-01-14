@@ -10,6 +10,7 @@ const authenticate_1 = __importDefault(require("../../middlewares/authenticate")
 const educationHistory_controller_1 = require("./educationHistory.controller");
 const router = express_1.default.Router();
 router.post('/', (0, authenticate_1.default)(user_1.userRole.student), educationHistory_controller_1.EducationHistoryController.create);
+router.post('/create', (0, authenticate_1.default)(user_1.userRole.student), educationHistory_controller_1.EducationHistoryController.createSingle);
 router.get('/:id', (0, authenticate_1.default)(user_1.userRole.student), educationHistory_controller_1.EducationHistoryController.getSingle);
 router.get('/', (0, authenticate_1.default)(user_1.userRole.student), educationHistory_controller_1.EducationHistoryController.getAll);
 router.patch('/:id', (0, authenticate_1.default)(user_1.userRole.student), educationHistory_controller_1.EducationHistoryController.updateSingle);

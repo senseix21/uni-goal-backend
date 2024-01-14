@@ -9,6 +9,10 @@ router.post('/',
     authenticate(userRole.student),
     EducationHistoryController.create);
 
+router.post('/create',
+    authenticate(userRole.student),
+    EducationHistoryController.createSingle);
+
 router.get('/:id',
     authenticate(userRole.student,),
     EducationHistoryController.getSingle);

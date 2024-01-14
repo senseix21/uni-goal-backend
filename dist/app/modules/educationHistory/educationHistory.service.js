@@ -20,11 +20,18 @@ const create = (data, userId) => __awaiter(void 0, void 0, void 0, function* () 
             expectedPassingYear: item.expectedPassingYear,
             officialName: item.officialName,
             groupMajorName: item.groupMajorName,
+            subjectName: item.subjectName,
             mediumOfInstruction: item.mediumOfInstruction,
             gpa: item.gpa,
         })),
     });
     return results;
+});
+const createSingle = (data, userId) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield prisma_1.prisma.educationHistory.create({
+        data: Object.assign(Object.assign({}, data), { userId })
+    });
+    return result;
 });
 const getSingle = (userId, id) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield prisma_1.prisma.educationHistory.findFirst({
@@ -65,6 +72,7 @@ const deleteSingle = (id) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.EducationHistoryService = {
     create,
+    createSingle,
     getSingle,
     getAll,
     updateSingle,

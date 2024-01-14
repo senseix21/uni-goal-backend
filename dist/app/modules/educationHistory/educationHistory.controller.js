@@ -27,6 +27,18 @@ const create = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0,
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
+        message: "EducationHistory Profiles created successfully",
+        data: result
+    });
+}));
+const createSingle = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const accessToken = req.headers.authorization;
+    const decodedToken = jwthelpers_1.jwtHelpers.verifyToken(accessToken, config_1.default.jwt.secret);
+    const userId = decodedToken.userId;
+    const result = yield educationHistory_service_1.EducationHistoryService.createSingle(req.body, userId);
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        statusCode: http_status_1.default.OK,
         message: "EducationHistory Profile created successfully",
         data: result
     });
@@ -75,6 +87,7 @@ const deleteSingle = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, v
 }));
 exports.EducationHistoryController = {
     create,
+    createSingle,
     getSingle,
     getAll,
     updateSingle,

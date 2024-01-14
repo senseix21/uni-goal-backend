@@ -16,6 +16,20 @@ const create = catchAsync(async (req, res) => {
     sendResponse(res, {
         success: true,
         statusCode: httpStatus.OK,
+        message: "EducationHistory Profiles created successfully",
+        data: result
+    })
+});
+const createSingle = catchAsync(async (req, res) => {
+    const accessToken: any = req.headers.authorization;
+    const decodedToken = jwtHelpers.verifyToken(accessToken, config.jwt.secret as Secret);
+    const userId = decodedToken.userId;
+
+    const result = await EducationHistoryService.createSingle(req.body, userId)
+
+    sendResponse(res, {
+        success: true,
+        statusCode: httpStatus.OK,
         message: "EducationHistory Profile created successfully",
         data: result
     })
@@ -77,6 +91,7 @@ const deleteSingle = catchAsync(async (req, res) => {
 
 export const EducationHistoryController = {
     create,
+    createSingle,
     getSingle,
     getAll,
     updateSingle,

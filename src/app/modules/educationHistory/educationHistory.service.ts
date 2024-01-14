@@ -10,6 +10,7 @@ const create = async (data: EducationHistory[], userId: string) => {
             expectedPassingYear: item.expectedPassingYear,
             officialName: item.officialName,
             groupMajorName: item.groupMajorName,
+            subjectName: item.subjectName,
             mediumOfInstruction: item.mediumOfInstruction,
             gpa: item.gpa,
         })),
@@ -18,6 +19,15 @@ const create = async (data: EducationHistory[], userId: string) => {
     return results;
 
 };
+
+const createSingle = async (data: EducationHistory, userId: string) => {
+    const result = await prisma.educationHistory.create({
+        data: {
+            ...data, userId
+        }
+    })
+    return result;
+}
 
 
 
@@ -74,6 +84,7 @@ const deleteSingle = async (id: string): Promise<EducationHistory | null> => {
 
 export const EducationHistoryService = {
     create,
+    createSingle,
     getSingle,
     getAll,
     updateSingle,

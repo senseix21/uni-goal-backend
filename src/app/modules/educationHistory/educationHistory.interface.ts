@@ -6,4 +6,5 @@ export type IEducationHistory = {
     groupMajorName: string;
     mediumOfInstruction: string;
     gpa: string;
+    userId: string;
 }
