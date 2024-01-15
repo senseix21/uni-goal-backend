@@ -95,6 +95,7 @@ model WorkHistory {
   JobType          JobType
   fromDate         DateTime
   toDate           DateTime
+  currentlyActive  String
 }
 
 model ExtraCurricularActivity {
