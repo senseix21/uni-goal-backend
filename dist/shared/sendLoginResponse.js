@@ -5,6 +5,7 @@ const sendLoginResponse = (res, data) => {
         success: data.success,
         statusCode: data.statusCode,
         message: data.message || null,
+        role: data.role || null || undefined,
         token: data.token || null || undefined
     };
     res.status(data.statusCode).json(responseData);

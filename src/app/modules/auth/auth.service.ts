@@ -52,7 +52,8 @@ const login = async (payload: ILoginUser): Promise<ILoginResponse> => {
     )
 
     return {
-        token,
+        role,
+        token
     }
 }
 export const Authservice = {

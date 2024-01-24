@@ -41,12 +41,13 @@ const signUp = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0,
 const login = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const loginData = __rest(req.body, []);
     const result = yield auth_service_1.Authservice.login(loginData);
-    const { token } = result;
+    const { token, role } = result;
     res.cookie("refreshToken", token);
     (0, sendLoginResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
         message: "User logged in successfully",
+        role: role,
         token: token
     });
 }));

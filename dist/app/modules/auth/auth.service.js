@@ -50,7 +50,8 @@ const login = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     const { id: userId, role: role, } = isUserExist;
     const token = jwthelpers_1.jwtHelpers.createToken({ userId, role }, config_1.default.jwt.secret, config_1.default.jwt.expires_in);
     return {
-        token,
+        role,
+        token
     };
 });
 exports.Authservice = {

@@ -11,7 +11,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProfileService = void 0;
 const prisma_1 = require("../../../shared/prisma");
-const getSingle = (userId) => __awaiter(void 0, void 0, void 0, function* () {
+const getSingle = (paramsId, reqBodyId) => __awaiter(void 0, void 0, void 0, function* () {
+    const userId = paramsId || reqBodyId;
     const result = yield prisma_1.prisma.user.findUnique({
         where: {
             id: userId,

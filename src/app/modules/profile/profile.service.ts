@@ -2,7 +2,9 @@ import { User } from "@prisma/client";
 import { prisma } from "../../../shared/prisma";
 
 
-const getSingle = async (userId: string): Promise<User | null> => {
+const getSingle = async (paramsId: string, reqBodyId: string): Promise<User | null> => {
+    const userId = paramsId || reqBodyId;
+
     const result = await prisma.user.findUnique({
         where: {
             id: userId,

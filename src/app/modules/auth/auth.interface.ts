@@ -17,6 +17,7 @@ export type ILoginUser = {
 }
 
 export type ILoginResponse = {
+    role: string,
     token: string;
 }
 
