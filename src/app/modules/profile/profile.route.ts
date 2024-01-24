@@ -1,13 +1,15 @@
 import express from "express";
-import { userRole } from "../../../enums/user";
-import authenticate from "../../middlewares/authenticate";
 import { ProfileController } from "./profile.controller";
 
 const router = express.Router();
 
-router.get('/',
-    authenticate(userRole.student, userRole.admin, userRole.counselor, userRole.superAdmin),
-    ProfileController.getSingle);
+router.get('/', ProfileController.getAll);
+
+router.get('/counselor', ProfileController.getAllCounselor);
+
+router.get('/:id', ProfileController.getSingle);
+
+
 
 
 export const ProfileRoutes = router;

@@ -17,6 +17,10 @@ router.patch('/:id',
     authenticate(userRole.admin,),
     StudentStatusController.updateSingle);
 
+router.patch('/:id',
+    authenticate(userRole.admin,),
+    StudentStatusController.assignCounselorToStudent);
+
 router.delete('/:id',
     authenticate(userRole.admin,),
     StudentStatusController.deleteSingle);

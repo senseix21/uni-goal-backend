@@ -55,9 +55,22 @@ const deleteSingle = (id) => __awaiter(void 0, void 0, void 0, function* () {
     });
     return result;
 });
+const assignCounselorToStudent = (counselorId, studentStatusId) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield prisma_1.prisma.studentStatus.update({
+        where: { id: studentStatusId },
+        data: {
+            counselorId: counselorId,
+        },
+        include: {
+            counselor: true
+        }
+    });
+    return result;
+});
 exports.StudentStatusService = {
     create,
     getSingle,
     updateSingle,
-    deleteSingle
+    deleteSingle,
+    assignCounselorToStudent
 };

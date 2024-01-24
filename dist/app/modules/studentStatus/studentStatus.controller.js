@@ -65,9 +65,19 @@ const deleteSingle = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, v
         data: result
     });
 }));
+const assignCounselorToStudent = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield studentStatus_service_1.StudentStatusService.updateSingle(req.body, req.params.id);
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        statusCode: http_status_1.default.OK,
+        message: "assignCounselorToStudent Profile updated successfully",
+        data: result
+    });
+}));
 exports.StudentStatusController = {
     create,
     getSingle,
     updateSingle,
-    deleteSingle
+    deleteSingle,
+    assignCounselorToStudent
 };

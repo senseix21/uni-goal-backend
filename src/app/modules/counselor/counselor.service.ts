@@ -2,17 +2,19 @@ import { Counselor } from "@prisma/client";
 import { prisma } from "../../../shared/prisma";
 import { ICounselor } from "./counselor.interface";
 
-const create = async (payload: ICounselor, userId: string): Promise<Counselor> => {
+const create = async (payload: ICounselor, loggedInUserId: string, providedUserId?: string): Promise<Counselor> => {
 
     // Check if the user has already added Counselor
-    const existingCartItem = await prisma.counselor.findFirst({
+    const userId = providedUserId || loggedInUserId;
+
+    const existing = await prisma.counselor.findFirst({
         where: {
             userId,
         },
     });
 
-    if (existingCartItem) {
-        throw new Error("Counselor Information already exist for the user");
+    if (existing) {
+        throw new Error("Counselor Information already exists for the user");
     }
 
     // If the Counselor is not already in the user Profile, add it
@@ -21,7 +23,8 @@ const create = async (payload: ICounselor, userId: string): Promise<Counselor> =
             ...payload,
             userId
         }
-    })
+    });
+
     return result;
 }
 

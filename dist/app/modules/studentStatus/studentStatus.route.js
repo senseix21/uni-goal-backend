@@ -12,5 +12,6 @@ const router = express_1.default.Router();
 router.post('/', (0, authenticate_1.default)(user_1.userRole.admin), studentStatus_controller_1.StudentStatusController.create);
 router.get('/:id', (0, authenticate_1.default)(user_1.userRole.admin), studentStatus_controller_1.StudentStatusController.getSingle);
 router.patch('/:id', (0, authenticate_1.default)(user_1.userRole.admin), studentStatus_controller_1.StudentStatusController.updateSingle);
+router.patch('/:id', (0, authenticate_1.default)(user_1.userRole.admin), studentStatus_controller_1.StudentStatusController.assignCounselorToStudent);
 router.delete('/:id', (0, authenticate_1.default)(user_1.userRole.admin), studentStatus_controller_1.StudentStatusController.deleteSingle);
 exports.StudentStatusRoutes = router;

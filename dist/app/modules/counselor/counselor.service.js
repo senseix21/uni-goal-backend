@@ -11,15 +11,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CounselorService = void 0;
 const prisma_1 = require("../../../shared/prisma");
-const create = (payload, userId) => __awaiter(void 0, void 0, void 0, function* () {
+const create = (payload, loggedInUserId, providedUserId) => __awaiter(void 0, void 0, void 0, function* () {
     // Check if the user has already added Counselor
-    const existingCartItem = yield prisma_1.prisma.counselor.findFirst({
+    const userId = providedUserId || loggedInUserId;
+    const existing = yield prisma_1.prisma.counselor.findFirst({
         where: {
             userId,
         },
     });
-    if (existingCartItem) {
-        throw new Error("Counselor Information already exist for the user");
+    if (existing) {
+        throw new Error("Counselor Information already exists for the user");
     }
     // If the Counselor is not already in the user Profile, add it
     const result = yield prisma_1.prisma.counselor.create({

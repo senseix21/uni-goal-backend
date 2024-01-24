@@ -59,10 +59,25 @@ const deleteSingle = async (id: string): Promise<StudentStatus | null> => {
     return result;
 }
 
+const assignCounselorToStudent = async (counselorId: string, studentStatusId: string): Promise<StudentStatus> => {
+    const result = await prisma.studentStatus.update({
+        where: { id: studentStatusId },
+        data: {
+            counselorId: counselorId,
+        },
+        include: {
+            counselor: true
+        }
+    });
+
+    return result;
+};
+
 
 export const StudentStatusService = {
     create,
     getSingle,
     updateSingle,
-    deleteSingle
+    deleteSingle,
+    assignCounselorToStudent
 }

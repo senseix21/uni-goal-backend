@@ -10,7 +10,12 @@ const create = catchAsync(async (req, res) => {
     const accessToken: any = req.headers.authorization;
     const decodedToken = jwtHelpers.verifyToken(accessToken, config.jwt.secret as Secret);
     const userId = decodedToken.userId;
-    const result = await CounselorService.create(req.body, userId)
+
+    // Check if the request contains a user ID in the body
+    const providedUserId = req.body.userId;
+
+    // If the user is an admin and a user ID is not provided in the body, generate one
+    const result = await CounselorService.create(req.body, userId, providedUserId);
 
     sendResponse(res, {
         success: true,

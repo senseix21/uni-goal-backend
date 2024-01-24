@@ -29,6 +29,38 @@ const getSingle = (userId) => __awaiter(void 0, void 0, void 0, function* () {
     });
     return result;
 });
+const getAllCounselor = () => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield prisma_1.prisma.user.findMany({
+        where: {
+            role: 'counselor'
+        },
+        include: {
+            ProfileInformation: true,
+            Counselor: true,
+        },
+    });
+    return result;
+});
+const getAll = () => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield prisma_1.prisma.user.findMany({
+        where: {
+            role: 'student'
+        },
+        include: {
+            ProfileInformation: true,
+            Counselor: true,
+            LanguageAndOtherQualifications: true,
+            EducationHistory: true,
+            WorkHistory: true,
+            ExtraCurricularActivity: true,
+            Skills: true,
+            StudentStatus: true,
+        },
+    });
+    return result;
+});
 exports.ProfileService = {
-    getSingle
+    getSingle,
+    getAll,
+    getAllCounselor
 };

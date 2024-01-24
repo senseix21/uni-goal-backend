@@ -45,13 +45,15 @@ model ProfileInformation {
   dateOfBirth    DateTime
   placeOfBirth   String
   formalPhoto    String
+
+  @@map("profile_information")
 }
 
 // Counselor model
 model Counselor {
-  id                 String @id @default(auto()) @map("_id") @db.ObjectId
-  userId             String @db.ObjectId
-  user               User   @relation(fields: [userId], references: [id])
+  id                 String          @id @default(auto()) @map("_id") @db.ObjectId
+  userId             String          @db.ObjectId
+  user               User            @relation(fields: [userId], references: [id])
   citizenship        String
   countryOfResidence String
   city               String
@@ -67,6 +69,36 @@ model Counselor {
   linkedinLink       String
   formalPhoto        String
   studentCard        String
+  StudentStatus      StudentStatus[]
+
+  @@map("counselor")
+}
+
+// StudentStatus model
+model StudentStatus {
+  id                 String             @id @default(auto()) @map("_id") @db.ObjectId
+  userId             String             @db.ObjectId
+  user               User               @relation(fields: [userId], references: [id])
+  consultationFee    Int?
+  consultationTime   DateTime?
+  consultationDone   Boolean?
+  documentsReady     Boolean?
+  applicationFee     Int?
+  applicationPaid    Boolean?
+  universityName     String?
+  majorName          String?
+  countryName        String?
+  applicationStatus  ApplicationStatus?
+  interviewScheduled Boolean?
+  acceptanceFee      Int?
+  admissionNotice    Boolean?
+  embassySubmission  DateTime?
+  visaIssued         Boolean?
+
+  counselorId String?    @db.ObjectId
+  counselor   Counselor? @relation(fields: [counselorId], references: [id])
+
+  @@map("student_status")
 }
 
 // EducationHistory model
@@ -82,6 +114,8 @@ model EducationHistory {
   subjectName         String?
   mediumOfInstruction String
   gpa                 String
+
+  @@map("education_history")
 }
 
 // WorkHistory model
@@ -96,6 +130,8 @@ model WorkHistory {
   fromDate         DateTime
   toDate           DateTime
   currentlyActive  String?
+
+  @@map("work_history")
 }
 
 model ExtraCurricularActivity {
@@ -107,6 +143,8 @@ model ExtraCurricularActivity {
   fromDate          DateTime
   toDate            DateTime?
   isCurrentlyActive Boolean
+
+  @@map("extra_curricular_activity")
 }
 
 // Skills model
@@ -136,28 +174,6 @@ model LanguageAndOtherQualifications {
   @@map("language_and_other_qualifications")
 }
 
-// StudentStatus model
-model StudentStatus {
-  id                 String             @id @default(auto()) @map("_id") @db.ObjectId
-  userId             String             @db.ObjectId
-  user               User               @relation(fields: [userId], references: [id])
-  consultationFee    Int?
-  consultationTime   DateTime?
-  consultationDone   Boolean?
-  documentsReady     Boolean?
-  applicationFee     Int?
-  applicationPaid    Boolean?
-  universityName     String?
-  majorName          String?
-  countryName        String?
-  applicationStatus  ApplicationStatus?
-  interviewScheduled Boolean?
-  acceptanceFee      Int?
-  admissionNotice    Boolean?
-  embassySubmission  DateTime?
-  visaIssued         Boolean?
-}
-
 // StudyProgram model
 model StudyProgram {
   id                   String   @id @default(auto()) @map("_id") @db.ObjectId
@@ -174,6 +190,8 @@ model StudyProgram {
   programOverview      String
   studySession         String
   applicationDeadline  DateTime
+
+  @@map("study_program")
 }
 
 // Enum for Level

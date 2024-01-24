@@ -53,9 +53,22 @@ const deleteSingle = catchAsync(async (req, res) => {
     })
 });
 
+const assignCounselorToStudent = catchAsync(async (req, res) => {
+
+    const result = await StudentStatusService.updateSingle(req.body, req.params.id)
+
+    sendResponse(res, {
+        success: true,
+        statusCode: httpStatus.OK,
+        message: "assignCounselorToStudent Profile updated successfully",
+        data: result
+    })
+});
+
 export const StudentStatusController = {
     create,
     getSingle,
     updateSingle,
-    deleteSingle
+    deleteSingle,
+    assignCounselorToStudent
 }

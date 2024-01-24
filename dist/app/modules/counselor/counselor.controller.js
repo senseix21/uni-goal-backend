@@ -23,7 +23,10 @@ const create = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0,
     const accessToken = req.headers.authorization;
     const decodedToken = jwthelpers_1.jwtHelpers.verifyToken(accessToken, config_1.default.jwt.secret);
     const userId = decodedToken.userId;
-    const result = yield counselor_service_1.CounselorService.create(req.body, userId);
+    // Check if the request contains a user ID in the body
+    const providedUserId = req.body.userId;
+    // If the user is an admin and a user ID is not provided in the body, generate one
+    const result = yield counselor_service_1.CounselorService.create(req.body, userId, providedUserId);
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
