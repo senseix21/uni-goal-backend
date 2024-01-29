@@ -22,11 +22,17 @@ const counselor_service_1 = require("./counselor.service");
 const create = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const accessToken = req.headers.authorization;
     const decodedToken = jwthelpers_1.jwtHelpers.verifyToken(accessToken, config_1.default.jwt.secret);
-    const userId = decodedToken.userId;
+    const userRole = decodedToken.role;
+    let userId = decodedToken.userId;
+    // Check if the user is an admin, and set userId to null if true
+    if (userRole === 'admin') {
+        userId = req.params.userId;
+        ;
+    }
     // Check if the request contains a user ID in the body
-    const providedUserId = req.body.userId;
+    console.log(userId);
     // If the user is an admin and a user ID is not provided in the body, generate one
-    const result = yield counselor_service_1.CounselorService.create(req.body, userId, providedUserId);
+    const result = yield counselor_service_1.CounselorService.create(req.body, userId);
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,

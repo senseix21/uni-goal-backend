@@ -2,10 +2,9 @@ import { Counselor } from "@prisma/client";
 import { prisma } from "../../../shared/prisma";
 import { ICounselor } from "./counselor.interface";
 
-const create = async (payload: ICounselor, loggedInUserId: string, providedUserId?: string): Promise<Counselor> => {
+const create = async (payload: ICounselor, userId: string): Promise<Counselor> => {
 
-    // Check if the user has already added Counselor
-    const userId = providedUserId || loggedInUserId;
+
 
     const existing = await prisma.counselor.findFirst({
         where: {

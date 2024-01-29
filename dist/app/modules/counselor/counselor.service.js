@@ -11,9 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CounselorService = void 0;
 const prisma_1 = require("../../../shared/prisma");
-const create = (payload, loggedInUserId, providedUserId) => __awaiter(void 0, void 0, void 0, function* () {
-    // Check if the user has already added Counselor
-    const userId = providedUserId || loggedInUserId;
+const create = (payload, userId) => __awaiter(void 0, void 0, void 0, function* () {
     const existing = yield prisma_1.prisma.counselor.findFirst({
         where: {
             userId,
