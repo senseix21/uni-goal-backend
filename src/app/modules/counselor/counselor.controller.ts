@@ -9,16 +9,9 @@ import { CounselorService } from "./counselor.service";
 const create = catchAsync(async (req, res) => {
     const accessToken: any = req.headers.authorization;
     const decodedToken = jwtHelpers.verifyToken(accessToken, config.jwt.secret as Secret);
-    const userRole = decodedToken.role;
     let userId = decodedToken.userId;
 
-    // Check if the user is an admin, and set userId to null if true
-    if (userRole === 'admin') {
-        userId = req.params.userId;;
-    }
-
-    // Check if the request contains a user ID in the body
-    console.log(userId);
+    userId = userId || req.params.id;
 
     // If the user is an admin and a user ID is not provided in the body, generate one
     const result = await CounselorService.create(req.body, userId);
